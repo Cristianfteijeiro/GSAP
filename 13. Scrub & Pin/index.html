@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 1</title>
+    <link rel="stylesheet" href="css/main.css" />
+  </head>
+  <body>
+    <section></section>
+    <section class="primary">
+      <aside>
+        <div class="mask">
+          <h1>diabolical</h1>
+        </div>
+        <div class="mask">
+          <p>process</p>
+        </div>
+      </aside>
+      <main>
+        <div class="mask">
+          <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eveniet,
+            quis in! Tempore fugit corrupti asperiores, dignissimos delectus
+            esse, sunt consequatur a unde hic adipisci. Ducimus beatae autem
+            earum recusandae voluptatibus!
+          </p>
+        </div>
+      </main>
+
+      <div class="line"></div>
+      <span>diabolical</span>
+    </section>
+    <section></section>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"
+      integrity="sha512-16esztaSRplJROstbIIdwX3N97V1+pZvV33ABoG1H2OyTttBxEGkTsoIVsiP1iaTtM8b3+hu2kB6pQ4Clr5yug=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"
+      integrity="sha512-Ic9xkERjyZ1xgJ5svx3y0u3xrvfT/uPkV99LBwe68xjy/mGtO+4eURHZBW2xW4SZbFrF1Tf090XqB+EVgXnVjw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script>
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".primary",
+          start: "top 20%",
+          end: "bottom center",
+          toggleActions: "play reverse restart reverse",
+        },
+        defaults: {
+          ease: "power3.out",
+          duration: 1,
+        },
+      });
+
+      const scrubTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".primary",
+          start: "top 30%",
+          end: "40 top",
+          scrub: true,
+        },
+      });
+      tl.from("h1", {
+        yPercent: 100,
+      })
+        .from(
+          "aside p",
+          {
+            yPercent: 150,
+          },
+          "-=.8"
+        )
+        .from(
+          "main p",
+          {
+            yPercent: 210,
+            opacity: 0,
+          },
+          "-0.1"
+        );
+
+      scrubTl
+        .from(".line", {
+          scaleY: 0,
+        })
+        .from(
+          "span",
+          {
+            x: 0,
+            yPercent: 0,
+          },
+          "<"
+        );
+    </script>
+  </body>
+</html>

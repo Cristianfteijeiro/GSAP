@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 1</title>
+    <link rel="stylesheet" href="css/main.css" />
+  </head>
+  <body>
+    <section>
+      <ul>
+        <li>
+          <span>Science</span>
+          <div class="reveal"></div>
+        </li>
+        <li>
+          <span>Tech</span>
+          <div class="reveal"></div>
+        </li>
+        <li>
+          <span>Latest</span>
+          <div class="reveal"></div>
+        </li>
+      </ul>
+      <h1>Hover over this title</h1>
+    </section>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"
+      integrity="sha512-16esztaSRplJROstbIIdwX3N97V1+pZvV33ABoG1H2OyTttBxEGkTsoIVsiP1iaTtM8b3+hu2kB6pQ4Clr5yug=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <script>
+      const section = document.querySelector("section");
+
+      let tagShow = gsap.to("span", {
+        opacity: 1,
+        stagger: 0.2,
+        duration: 0.3,
+        paused: true,
+      });
+
+      let tagReveal = gsap.to(".reveal", {
+        scaleX: 1,
+        stagger: 0.1,
+        duration: 0.3,
+        paused: true,
+        transformOrigin: "left",
+        onComplete: () => {
+          gsap.to(".reveal", {
+            scaleX: 0,
+            stagger: 0.1,
+            duration: 0.3,
+            ease: "power4.out",
+            transformOrigin: "right",
+          });
+        },
+      });
+
+      section.addEventListener("mouseenter", () => {
+        tagShow.play();
+        tagReveal.play();
+      });
+
+      section.addEventListener("mouseleave", () => {
+        tagShow.reverse();
+        tagReveal.reverse();
+      });
+    </script>
+  </body>
+</html>

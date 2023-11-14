@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 1</title>
+    <link rel="stylesheet" href="css/main.css" />
+  </head>
+  <body>
+    <span>Hover over me!</span>
+
+    <section>
+       <img src="https://coursetro.s3.amazonaws.com/stuff/left.png" class="left">
+       <img src="https://coursetro.s3.amazonaws.com/stuff/right.png" class="right">
+
+      <h1>Oh So Ta<br>st<br>y</h1>
+
+      <div class="circle"></div>
+</section>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"
+      integrity="sha512-16esztaSRplJROstbIIdwX3N97V1+pZvV33ABoG1H2OyTttBxEGkTsoIVsiP1iaTtM8b3+hu2kB6pQ4Clr5yug=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <script>
+      const sectionHover = document.querySelector('section')
+
+const hamburgerTL = gsap.timeline({
+  defaults:{
+    ease: "power4.inOut"
+  }
+  // The custom ease goes in this section, under the defaults object
+})
+
+hamburgerTL
+  .to('.left', {
+    x: -80,
+    scale: 0.7
+  })
+  .to('.right', {
+    x: 80,
+    scale: 0.7
+  }, "<") // Note, "<" means to start at the same time as the previous animation!
+  .to('.circle', {
+    scale: 1,
+  }, "-=.5")
+  .to('h1', {
+    opacity: 1
+  }, "-=.5")
+
+// Pause the animation here!:
+hamburgerTL.pause(true)
+
+
+sectionHover.addEventListener('mouseenter', () => {
+  hamburgerTL.play()
+})
+
+sectionHover.addEventListener('mouseleave', () => {
+  // Reverse the animation here!
+  hamburgerTL.reverse()
+})

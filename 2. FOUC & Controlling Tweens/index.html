@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 2</title>
+    <link rel="stylesheet" href="/css/main.css" />
+  </head>
+  <body>
+    <div class="container">
+      <p>luxury</p>
+    </div>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"
+      integrity="sha512-16esztaSRplJROstbIIdwX3N97V1+pZvV33ABoG1H2OyTttBxEGkTsoIVsiP1iaTtM8b3+hu2kB6pQ4Clr5yug=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script>
+      //Manera 1
+      // const container = document.querySelector(".container");
+
+      // container.addEventListener("mouseenter", () => {
+      //   gsap.to(container, {
+      //     borderRadius: "2%",
+      //     width: "20vh",
+      //     height: "28vh",
+      //   });
+      // });
+
+      // container.addEventListener("mouseleave", () => {
+      //   gsap.to(container, {
+      //     borderRadius: "50%",
+      //     width: "16vh",
+      //     height: "16vh",
+      //   });
+      // });
+
+      //Manera 2
+
+      const container = document.querySelector(".container");
+
+      let tween = gsap.to(container, {
+        borderRadius: "2%",
+        width: "20vh",
+        height: "28vh",
+        paused: true,
+      });
+
+      let tween2 = gsap.to("p", {
+        fontSize: "clamp(5rem, 5vw, 10rem)",
+        x: 0,
+        paused: true,
+      });
+
+      container.addEventListener("mouseenter", () => {
+        tween.play();
+        tween2.play();
+      });
+
+      container.addEventListener("mouseleave", () => {
+        tween.reverse();
+        tween2.reverse();
+      });
+    </script>
+  </body>
+</html>
